@@ -22,13 +22,12 @@ app.use(cors());
 app.use(express.static("website"));
 
 // Setup Server
-const open = require("open");
+
 // Spin up the server
 const port = 8000;
 try {
   const server = app.listen(port, () => {
     console.log("http://localhost:" + port);
-    open("http://localhost:" + port);
   });
 } catch (error) {
   // Callback to debug

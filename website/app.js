@@ -9,8 +9,7 @@ const tempHolder = document.getElementById("temp");
 const contentHolder = document.getElementById("content");
 // Personal API Key for OpenWeatherMap API
 
-const weatherJournalUrl =
-  "https://api.openweathermap.org/data/2.5/weather?zip=";
+const weatherJournalUrl = "https://api.openweathermap.org/data/2.5/weather?zip=";
 const id = "&APPID=4568819ea4461253d7008759296973cd";
 
 // Create a new date instance dynamically with JS
@@ -21,6 +20,7 @@ let newDate = d.getMonth() + "." + d.getDate() + "." + d.getFullYear();
 let isValid = false;
 zipInput.oninput = () => {
   isValid = zipInput.value.trim().length !== 0;
+  isValid ? submit.classList.add("show") : submit.classList.remove("show");
 };
 
 submit.addEventListener("click", onSubmitHandler);
@@ -45,8 +45,6 @@ function onSubmitHandler(event) {
     });
     zipInput.value = "";
     feelingsInput.value = "";
-  } else {
-    // console.log("enter");
   }
 }
 
@@ -84,15 +82,11 @@ async function sendDataToServer(url, data) {
 async function updateHolder() {
   const result = await fetch("/all");
   try {
-    // console.log(result);
     const { temp, date, content } = await result.json();
-    // console.log(temp);
-    // console.log(date);
-    // console.log(content);
     tempHolder.innerHTML = temp;
     dateHolder.innerHTML = date;
     contentHolder.innerHTML = content;
-    document.querySelector(".entry").classList.add("show")
+    document.querySelector(".entry").classList.add("show");
   } catch (error) {
     console.log(error);
   }

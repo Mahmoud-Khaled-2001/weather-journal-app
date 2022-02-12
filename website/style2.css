@@ -74,6 +74,10 @@ button:focus {
   padding: 10px 20px;
   border-radius: 20px;
   transition: 0.3s;
+  display: none;
+}
+.feel button.show{
+  display: block;
 }
 .feel button:hover {
   background-color: rgba(255, 255, 255, 0.5);
